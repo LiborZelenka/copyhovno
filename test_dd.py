@@ -6,6 +6,7 @@ Tests for the dd module.
 import unittest
 import tempfile
 import os
+import shutil
 from dd import copy_data
 
 
@@ -18,9 +19,7 @@ class TestDDCopy(unittest.TestCase):
     
     def tearDown(self):
         """Clean up test files."""
-        for file in os.listdir(self.test_dir):
-            os.remove(os.path.join(self.test_dir, file))
-        os.rmdir(self.test_dir)
+        shutil.rmtree(self.test_dir)
     
     def test_copy_small_file(self):
         """Test copying a small file."""

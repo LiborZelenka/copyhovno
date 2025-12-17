@@ -83,6 +83,16 @@ def main():
     
     args = parser.parse_args()
     
+    # Validate block size
+    if args.block_size <= 0:
+        sys.stderr.write('Error: Block size must be positive\n')
+        return 1
+    
+    # Validate count
+    if args.count is not None and args.count < 0:
+        sys.stderr.write('Error: Count must be non-negative\n')
+        return 1
+    
     try:
         blocks, bytes_total = copy_data(
             args.input_file,
